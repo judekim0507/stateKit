@@ -1,0 +1,20 @@
+{
+  "name": "statekit",
+  "version": "1.0.0",
+  "description": "State-first realtime over WebSockets with dead-simple server and client APIs.",
+  "homepage": "https://github.com/judekim0507/stateKit#readme",
+  "bugs": {
+    "url": "https://github.com/judekim0507/stateKit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judekim0507/stateKit.git"
+  },
+  "license": "MIT",
+  "author": "Jude Kim",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}

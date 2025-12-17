@@ -1,0 +1,10 @@
+{
+  "name": "@judekim0507/statekit-client",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./svelte": "./index.svelte.js"
+  }
+}
