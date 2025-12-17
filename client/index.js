@@ -7,13 +7,13 @@ const values = new Map();
 
 function connect() {
   ws = new WebSocket(url);
-  
+
   ws.onopen = () => {
     connected = true;
     for (const msg of pending) ws.send(msg);
     pending.length = 0;
   };
-  
+
   ws.onmessage = (event) => {
     try {
       const { key, value } = JSON.parse(event.data);
@@ -22,7 +22,7 @@ function connect() {
       if (cbs) for (const cb of cbs) cb(value);
     } catch (e) {}
   };
-  
+
   ws.onclose = () => {
     connected = false;
     setTimeout(connect, 1000);
@@ -41,18 +41,16 @@ export function init(serverUrl) {
 
 export function live(key, callback) {
   if (!ws) connect();
-  
+
   if (!subscriptions.has(key)) {
     subscriptions.set(key, new Set());
     send({ type: "subscribe", key });
   }
-  
+
   subscriptions.get(key).add(callback);
-  
-  // If we already have a value, call immediately
+
   if (values.has(key)) callback(values.get(key));
-  
-  // Return unsubscribe
+
   return () => subscriptions.get(key).delete(callback);
 }
 
